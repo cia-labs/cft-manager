@@ -6,7 +6,7 @@ import (
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 
-var logger *zap.Logger
+var Logger *zap.Logger
 
 func init() {
 	config := zap.NewProductionConfig()
@@ -29,8 +29,8 @@ func init() {
 	config.EncoderConfig.EncodeCaller = zapcore.ShortCallerEncoder
 
 	hook := lumberjack.Logger{
-		Filename:   "<LOGFILE>", 
-		MaxSize:    10,                     // megabytes
+		Filename:   "<LOGFILE>",
+		MaxSize:    10, // megabytes
 		MaxBackups: 3,
 		MaxAge:     28, //days
 		Compress:   true,
@@ -42,9 +42,5 @@ func init() {
 		zap.NewAtomicLevelAt(zap.InfoLevel),
 	)
 
-	logger = zap.New(core, zap.AddCaller())
-}
-
-func GetLogger() *zap.Logger {
-	return logger
+	Logger = zap.New(core, zap.AddCaller())
 }
