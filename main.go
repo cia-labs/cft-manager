@@ -5,7 +5,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/cia-labs/cft-manager/internal"
+	"github.com/cia-labs/cft-manager/internal/app"
+	"github.com/cia-labs/cft-manager/internal/appconf"
 )
 
 var (
@@ -15,6 +16,7 @@ var (
 )
 
 func main() {
+
 	configFile := flag.String("config", "", "path to config file")
 	flag.Parse()
 
@@ -27,7 +29,6 @@ func main() {
 		fmt.Printf("Error: config file %s not found\n", *configFile)
 		os.Exit(1)
 	}
-
-	logger := internal.GetLogger()
-	logger.Info("Starting CFT Manager")
+	appconf.LoadAppConf(*configFile)
+	app.RunApp()
 }
