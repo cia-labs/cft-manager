@@ -1,2 +1,2 @@
 # cft-manager
-Cloudflare Tunnel Resouce Manager
+Cloudflare Tunnel Resource Manager
